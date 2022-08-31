@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const URL =
-  "mongodb+srv://auth:authproject@authproject.ip7jn2r.mongodb.net/authproject?retryWrites=true&w=majority";
+const URL = "";
 
 const ConnnectedDB = async () => {
   try {
