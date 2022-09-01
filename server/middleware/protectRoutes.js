@@ -4,7 +4,7 @@ const user = require("../modules/UserAuth");
 const JWT_SECRET = "sdfghjkl;lkjtyujhkliuh2345678@#$%^&*()dfghjk";
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-
+  console.log("token problem", token);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -14,10 +14,10 @@ const protect = asyncHandler(async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = JWT.verify(token, JWT_SECRET);
 
       // Get user from the token
-      req.user = await User.findById(decoded.id).select("-password");
+      req.user = await user.findById(decoded.id).select("-password");
 
       next();
     } catch (error) {

@@ -8,10 +8,9 @@ const createPost = async (blogdata, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(blogdata);
-  console.log(token);
-  const response = await fetch(API_URL, blogdata, config);
-  console.log("error", response);
+
+  const response = await axios.post(API_URL, blogdata, config);
+
   return response.data;
 };
 //get blog post
@@ -21,7 +20,9 @@ const getPost = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   };
+
   const response = await axios.get(API_URL, config);
+
   return response.data;
 };
 //update blog post

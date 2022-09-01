@@ -1,14 +1,16 @@
 const asyncHandler = require("express-async-handler");
 const BlogPost = require("../modules/BlogPost");
+const User = require("../modules/UserAuth");
+
 exports.createBlogPost = asyncHandler(async (req, res) => {
   const { title, image, description } = req.body;
-
+  console.log(req.body);
   if (!title || !image || !description) {
     res.status(400);
     throw new Error("Please add all fields");
   }
 
-  const blog = await BlogPost.creat({ title, image, description });
+  const blog = await BlogPost.create({ title, image, description });
   res.status(200).json({
     status: "success",
     post: blog,
